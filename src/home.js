@@ -8,6 +8,11 @@ const createHomePage = () => {
     headline.textContent = 'My TODO App'
     pageContent.appendChild(headline);
     content.appendChild(pageContent)
+
+    const newBoardBtn = document.createElement('button');
+    newBoardBtn.textContent = '+  Add new board'
+    pageContent.appendChild(newBoardBtn)
+    content.appendChild(pageContent)
 }
 
 export default createHomePage;
