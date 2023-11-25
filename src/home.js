@@ -61,12 +61,24 @@ const createHomePage = () => {
                 boardContainer.appendChild(cardBtn);
             });
         }
-    
-    const newBoardBtn = document.createElement('button');
-    newBoardBtn.textContent = '+  Add new board'
-    pageContent.appendChild(newBoardBtn)
-    content.appendChild(pageContent)
 
+        // Function to update the UI to display tasks for the selected card
+    const updateCardUI = (card) => {
+        // Clear existing tasks
+        boardContainer.innerHTML = '';
+
+        // Display tasks for the selected card
+        const tasks = card.getTasks();
+        tasks.forEach((task) => {
+            const taskItem = document.createElement('div');
+            taskItem.textContent = task.description;
+            boardContainer.appendChild(taskItem);
+        });
+    };
+
+    content.appendChild(pageContent);
+    
+    
    
 }
 
@@ -86,4 +98,10 @@ export default createHomePage;
     // You can update the UI or perform additional actions if needed
     console.log(`New board created: ${newBoard.name}`);
     }
+
+    const newBoardBtn = document.createElement('button');
+    newBoardBtn.textContent = '+  Add new board'
+    pageContent.appendChild(newBoardBtn)
+    content.appendChild(pageContent)
+
   }); */
