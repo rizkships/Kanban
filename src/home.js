@@ -18,10 +18,22 @@ const createHomePage = () => {
     boardContainer.classList.add('board-container');
 
     // Add event listener for the "Add new board" button 
-    
+
     const newBoardBtn = document.createElement('button');
     newBoardBtn.textContent = '+  Add new board'
     pageContent.appendChild(newBoardBtn)
+
+    newBoardBtn.addEventListener('click', () => {
+        const boardName = prompt('Enter the name for the new board:');
+        if (boardName) {
+            
+            const newBoard = boardManager.createBoard(boardName);
+            // Update UI to display the new board
+            updateBoardUI();
+            console.log(`New board created: ${newBoard.name}`);
+       
+        }
+    })
 
     // function to create a button for each board 
     const createBoardButton = (board) => {
@@ -38,19 +50,20 @@ const createHomePage = () => {
         return boardBtn;
     };
 
-    // Add event listener for the "Add new board" button
+    //  Function to update the UI to display cards for the selected board
 
-    newBoardBtn.addEventListener('click', () => {
-        const boardName = prompt('Enter the name for the new board:');
-        if (boardName) {
-            
-            const newBoard = boardManager.createBoard(boardName);
-            // Update UI to display the new board
-            updateBoardUI();
-            console.log(`New board created: ${newBoard.name}`);
-        // why do we not have 
-        }
-    })
+    const updateBoardUI = () => {
+        // Clear existing content
+        boardContainer.innerHTML = '';
+
+        // Display existing boards
+        const boards = boardManager.getBoards();
+        boards.forEach((board) => {
+            const boardBtn = createBoardButton(board);
+            boardContainer.appendChild(boardBtn);
+        });
+
+    
 
 
         // Display current board's cards
