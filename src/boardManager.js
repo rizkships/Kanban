@@ -1,6 +1,10 @@
+//boardManager.js
+
 import Board from './boards.js'
 
-const BoardManager = () => {
+let boardManagerInstance = null;
+
+const boardManager = () => {
     let boards = [];
     let currentBoard = null;
 
@@ -31,4 +35,13 @@ const BoardManager = () => {
     };
 };
 
-export default BoardManager;
+// Singleton pattern to ensure there's only one instance
+export const getBoardManagerInstance = () => {
+    if (!boardManagerInstance) {
+      boardManagerInstance = boardManager();
+    }
+    return boardManagerInstance;
+  };
+
+  export default getBoardManagerInstance();
+//export default boardManager;
