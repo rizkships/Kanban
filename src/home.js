@@ -17,6 +17,12 @@ const createHomePage = () => {
     const boardContainer = document.createElement('div');
     boardContainer.classList.add('board-container');
 
+    // Add event listener for the "Add new board" button 
+    
+    const newBoardBtn = document.createElement('button');
+    newBoardBtn.textContent = '+  Add new board'
+    pageContent.appendChild(newBoardBtn)
+
     // function to create a button for each board 
     const createBoardButton = (board) => {
         const boardBtn = document.createElement('button');
@@ -37,11 +43,12 @@ const createHomePage = () => {
     newBoardBtn.addEventListener('click', () => {
         const boardName = prompt('Enter the name for the new board:');
         if (boardName) {
-            const newBoard = boardManager(boardName);
+            
+            const newBoard = boardManager.createBoard(boardName);
             // Update UI to display the new board
             updateBoardUI();
             console.log(`New board created: ${newBoard.name}`);
-        // why do we not have const newBoard = boardManager.createBoard(boardName);
+        // why do we not have 
         }
     })
 
