@@ -45,6 +45,22 @@ const createHomePage = () => {
         }
     })
 
+
+        // Display current board's cards
+        const currentBoard = boardManager.getCurrentBoard();
+        if (currentBoard) {
+            const cards = currentBoard.getCards();
+            cards.forEach((card) => {
+                const cardBtn = document.createElement('button');
+                cardBtn.textContent = card.name;
+                // Add event listener to display tasks for the selected card
+                cardBtn.addEventListener('click', () => {
+                    // Update UI to display tasks for the selected card
+                    updateCardUI(card);
+                });
+                boardContainer.appendChild(cardBtn);
+            });
+        }
     
     const newBoardBtn = document.createElement('button');
     newBoardBtn.textContent = '+  Add new board'
