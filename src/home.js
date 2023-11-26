@@ -81,6 +81,7 @@ const createHomePage = () => {
                 boardContainer.appendChild(cardBtn);
             });
         }
+    }
 
         // Function to update the UI to display tasks for the selected card
     const updateCardUI = (card) => {
@@ -97,16 +98,18 @@ const createHomePage = () => {
     };
 
     content.appendChild(pageContent);
+    content.appendChild(boardContainer);
     
     
    
 }
 
 
-export default createHomePage;
 
+export default createHomePage;
+ /*
  // Add event listener for the "Add new board" button
-    /*
+   
   newBoardBtn.addEventListener('click', () => {
     // Prompt the user to enter the name for the new board
     const boardName = prompt('Enter the name for the new board:');
@@ -124,4 +127,5 @@ export default createHomePage;
     pageContent.appendChild(newBoardBtn)
     content.appendChild(pageContent)
 
-  }); */
+  }); 
+  */
