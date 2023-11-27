@@ -28,7 +28,14 @@ const createHomePage = () => {
 
     // Display boards
     const boardContainer = document.createElement('div');
-    boardContainer.classList.add('board-container');
+    boardContainer.classList.add('flex');
+
+    // Sidebar 
+
+    const Sidebar = document.createElement('aside');
+    Sidebar.classList.add('bg-green-500', 'text-white', 'p-4', 'w-48');
+    const containerSidebar = document.createElement('div');
+    containerSidebar.classList.add('container');
 
     // Add event listener for the "Add new board" button 
 
