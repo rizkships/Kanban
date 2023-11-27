@@ -40,8 +40,9 @@ const createHomePage = () => {
     // Add event listener for the "Add new board" button 
 
     const newBoardBtn = document.createElement('button');
+    newBoardBtn.classList.add('bg-white', 'text-green-500', 'p-2', 'mb-4');
     newBoardBtn.textContent = '+  Add new board'
-    pageContent.appendChild(newBoardBtn)
+    containerSidebar.appendChild(newBoardBtn);
 
     newBoardBtn.addEventListener('click', () => {
         const boardName = prompt('Enter the name for the new board:');
@@ -92,16 +93,17 @@ const createHomePage = () => {
             const cards = currentBoard.getCards();
             cards.forEach((card) => {
                 const cardBtn = document.createElement('button');
+                cardBtn.classList.add('bg-blue-700', 'text-white', 'p-2', 'mb-2', 'w-full');
                 cardBtn.textContent = card.name;
                 // Add event listener to display tasks for the selected card
                 cardBtn.addEventListener('click', () => {
                     // Update UI to display tasks for the selected card
                     updateCardUI(card);
                 });
-                boardContainer.appendChild(cardBtn);
+                containerSidebar.appendChild(cardBtn);
             });
         }
-    }
+    };
 
         // Function to update the UI to display tasks for the selected card
     const updateCardUI = (card) => {
