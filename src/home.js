@@ -115,14 +115,26 @@ const createHomePage = () => {
         tasks.forEach((task) => {
             const taskItem = document.createElement('div');
             taskItem.textContent = task.description;
-            boardContainer.appendChild(taskItem);
+            containerSidebar.appendChild(taskItem);
         });
     };
+    
+    // Footer
+    const footer = document.createElement('footer');
+    footer.classList.add('bg-gray-400', 'text-white', 'py-4', 'text-center');
+    const containerFooter = document.createElement('div');
+    containerFooter.classList.add('container');
+    const footerContent = document.createElement('p');
+    footerContent.textContent = '© 2023 My TODO App';
+    containerFooter.appendChild(footerContent);
+    footer.appendChild(containerFooter);
 
     content.appendChild(pageContent);
     content.appendChild(boardContainer);
 
     content.appendChild(header);
+
+    content.appendChild(footer);
     
     
    
