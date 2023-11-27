@@ -7,10 +7,23 @@ const createHomePage = () => {
     const pageContent = document.createElement('div');
     pageContent.classList.add('page-content')
 
+    const header = document.createElement('header');
+    header.classList.add('bg-blue-500', 'text-white', 'py-4');
+    const containerHeader = document.createElement('div');
+    containerHeader.classList.add('container');
+    const headline = document.createElement('h1');
+    headline.classList.add('text-4xl');
+    headline.textContent = 'My TODO App';
+    containerHeader.appendChild(headline);
+    header.appendChild(containerHeader);
+
+    /*
     const headline = document.createElement('h1');
     headline.classList.add('text-4xl', 'text-blue-700', 'bg-orange-300')
     headline.textContent = 'My TODO App'
     pageContent.appendChild(headline);
+
+    */
     
 
     // Display boards
@@ -33,7 +46,7 @@ const createHomePage = () => {
             console.log(`New board created: ${newBoard.name}`);
        
         }
-    })
+    });
 
     // function to create a button for each board 
     const createBoardButton = (board) => {
@@ -99,6 +112,8 @@ const createHomePage = () => {
 
     content.appendChild(pageContent);
     content.appendChild(boardContainer);
+
+    content.appendChild(header);
     
     
    
