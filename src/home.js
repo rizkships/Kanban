@@ -129,11 +129,10 @@ const createHomePage = () => {
     containerFooter.appendChild(footerContent);
     footer.appendChild(containerFooter);
 
-    content.appendChild(pageContent);
-    content.appendChild(boardContainer);
-
+    // Append elements to content
     content.appendChild(header);
-
+    content.appendChild(sidebar);
+    content.appendChild(boardContainer);
     content.appendChild(footer);
     
     
