@@ -4,8 +4,7 @@ import boardManager from "./boardManager.js";
 
 const createHomePage = () => {
     const content = document.querySelector('#content');
-    const pageContent = document.createElement('div');
-    pageContent.classList.add('page-content')
+   
 
     const header = document.createElement('header');
     header.classList.add('bg-blue-500', 'text-white', 'py-4');
@@ -17,44 +16,41 @@ const createHomePage = () => {
     containerHeader.appendChild(headline);
     header.appendChild(containerHeader);
 
-    /*
-    const headline = document.createElement('h1');
-    headline.classList.add('text-4xl', 'text-blue-700', 'bg-orange-300')
-    headline.textContent = 'My TODO App'
-    pageContent.appendChild(headline);
-
-    */
-    
-
-    // Display boards
-    const boardContainer = document.createElement('div');
-    boardContainer.classList.add('flex');
-
     // Sidebar 
 
-    const Sidebar = document.createElement('aside');
-    Sidebar.classList.add('bg-green-500', 'text-white', 'p-4', 'w-48');
+    const sidebar = document.createElement('aside');
+    sidebar.classList.add('bg-green-500', 'text-white', 'p-4', 'w-48');
     const containerSidebar = document.createElement('div');
     containerSidebar.classList.add('container');
 
-    // Add event listener for the "Add new board" button 
+  // Add event listener for the "Add new board" button 
 
-    const newBoardBtn = document.createElement('button');
-    newBoardBtn.classList.add('bg-white', 'text-green-500', 'p-2', 'mb-4');
-    newBoardBtn.textContent = '+  Add new board'
-    containerSidebar.appendChild(newBoardBtn);
+  const newBoardBtn = document.createElement('button');
+  newBoardBtn.classList.add('bg-white', 'text-green-500', 'p-2', 'mb-4');
+  newBoardBtn.textContent = '+  Add new board'
+  containerSidebar.appendChild(newBoardBtn);
 
-    newBoardBtn.addEventListener('click', () => {
-        const boardName = prompt('Enter the name for the new board:');
-        if (boardName) {
-            
-            const newBoard = boardManager.createBoard(boardName);
-            // Update UI to display the new board
-            updateBoardUI();
-            console.log(`New board created: ${newBoard.name}`);
-       
-        }
-    });
+  newBoardBtn.addEventListener('click', () => {
+      const boardName = prompt('Enter the name for the new board:');
+      if (boardName) {
+          
+          const newBoard = boardManager.createBoard(boardName);
+          // Update UI to display the new board
+          updateBoardUI();
+          console.log(`New board created: ${newBoard.name}`);
+     
+      }
+  });
+    
+  sidebar.appendChild(containerSidebar);
+
+    // Display boards
+    const boardContainer = document.createElement('div');
+    boardContainer.classList.add('flex', 'flex-1', 'p-4');
+
+    
+
+    
 
     // function to create a button for each board 
     const createBoardButton = (board) => {
@@ -100,7 +96,7 @@ const createHomePage = () => {
                     // Update UI to display tasks for the selected card
                     updateCardUI(card);
                 });
-                containerSidebar.appendChild(cardBtn);
+                boardContainer.appendChild(cardBtn);
             });
         }
     };
@@ -115,7 +111,7 @@ const createHomePage = () => {
         tasks.forEach((task) => {
             const taskItem = document.createElement('div');
             taskItem.textContent = task.description;
-            containerSidebar.appendChild(taskItem);
+            boardContainer.appendChild(taskItem);
         });
     };
     
@@ -135,7 +131,16 @@ const createHomePage = () => {
     content.appendChild(boardContainer);
     content.appendChild(footer);
     
-    
+    // Flex container for header, sidebar, main content, and footer
+    const flexContainer = document.createElement('div');
+    flexContainer.classList.add('flex', 'flex-col', 'min-h-screen');
+    flexContainer.appendChild(header);
+    flexContainer.appendChild(sidebar);
+    flexContainer.appendChild(boardContainer);
+    flexContainer.appendChild(footer);
+
+    // Append flex container to content
+    content.appendChild(flexContainer);
    
 }
 
