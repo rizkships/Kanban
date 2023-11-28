@@ -19,13 +19,13 @@ const createHomePage = () => {
 
     // Grid container for header, sidebar, main content, and footer
     const gridContainer = document.createElement('div');
-    gridContainer.classList.add('grid',  'min-h-screen', 'grid-rows-[auto,1fr,auto]'); // 'grid-cols-3'
+    gridContainer.classList.add('grid', 'grid-cols-5', 'min-h-screen'); // , 'grid-rows-[auto,1fr,auto]'
     gridContainer.appendChild(header);
 
     // Sidebar 
 
     const sidebar = document.createElement('aside');
-    sidebar.classList.add('bg-green-500', 'text-white', 'p-4', 'w-48', 'row-start-2', 'row-span-2', 'col-start-1', 'col-span-1');
+    sidebar.classList.add('bg-green-500', 'text-white', 'p-4', 'w-48', 'col-span-1');
     const containerSidebar = document.createElement('div');
     containerSidebar.classList.add('container-sidebar');
 
@@ -52,7 +52,7 @@ const createHomePage = () => {
 
     // Display boards
     const boardContainer = document.createElement('div');
-    boardContainer.classList.add('grid', 'col-start', 'col-span-2', 'p-4', 'board-container');
+    boardContainer.classList.add('grid', 'col-span-4', 'p-4', 'board-container', 'bg-red-200');
 
     
 
