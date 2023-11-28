@@ -4,10 +4,11 @@ import boardManager from "./boardManager.js";
 
 const createHomePage = () => {
     const content = document.querySelector('#content');
-   
+
+
 
     const header = document.createElement('header');
-    header.classList.add('bg-blue-500', 'text-white', 'py-4');
+    header.classList.add('bg-blue-500', 'text-white', 'py-4', 'col-span-2');
     const containerHeader = document.createElement('div');
     containerHeader.classList.add('container');
     const headline = document.createElement('h1');
@@ -16,12 +17,17 @@ const createHomePage = () => {
     containerHeader.appendChild(headline);
     header.appendChild(containerHeader);
 
+    // Grid container for header, sidebar, main content, and footer
+    const gridContainer = document.createElement('div');
+    gridContainer.classList.add('grid',  'min-h-screen', 'grid-rows-[auto,1fr,auto]'); // 'grid-cols-3'
+    gridContainer.appendChild(header);
+
     // Sidebar 
 
     const sidebar = document.createElement('aside');
-    sidebar.classList.add('bg-green-500', 'text-white', 'p-4', 'w-48');
+    sidebar.classList.add('bg-green-500', 'text-white', 'p-4', 'w-48', 'row-start-2', 'row-span-2', 'col-start-1', 'col-span-1');
     const containerSidebar = document.createElement('div');
-    containerSidebar.classList.add('container');
+    containerSidebar.classList.add('container-sidebar');
 
   // Add event listener for the "Add new board" button 
 
@@ -46,7 +52,7 @@ const createHomePage = () => {
 
     // Display boards
     const boardContainer = document.createElement('div');
-    boardContainer.classList.add('flex', 'flex-1', 'p-4');
+    boardContainer.classList.add('grid', 'col-start', 'col-span-2', 'p-4', 'board-container');
 
     
 
@@ -117,30 +123,29 @@ const createHomePage = () => {
     
     // Footer
     const footer = document.createElement('footer');
-    footer.classList.add('bg-gray-400', 'text-white', 'py-4', 'text-center');
+    footer.classList.add('bg-gray-400', 'text-white', 'py-4', 'text-center', 'col-span-2');
+    
     const containerFooter = document.createElement('div');
-    containerFooter.classList.add('container');
+    containerFooter.classList.add('foot-container');
     const footerContent = document.createElement('p');
     footerContent.textContent = '© 2023 My TODO App';
     containerFooter.appendChild(footerContent);
     footer.appendChild(containerFooter);
-
+    
     // Append elements to content
     content.appendChild(header);
-    content.appendChild(sidebar);
-    content.appendChild(boardContainer);
+    content.appendChild(gridContainer);
     content.appendChild(footer);
     
-    // Flex container for header, sidebar, main content, and footer
-    const flexContainer = document.createElement('div');
-    flexContainer.classList.add('flex', 'flex-col', 'min-h-screen');
-    flexContainer.appendChild(header);
-    flexContainer.appendChild(sidebar);
-    flexContainer.appendChild(boardContainer);
-    flexContainer.appendChild(footer);
+   // gridContainer.appendChild(sidebar);
+   
+    
+    gridContainer.appendChild(sidebar);
+    gridContainer.appendChild(boardContainer);
+  //  gridContainer.appendChild(footer);
 
     // Append flex container to content
-    content.appendChild(flexContainer);
+    
    
 }
 
