@@ -3,6 +3,10 @@
 import boardManager from "./boardManager.js";
 
 const createHomePage = () => {
+    // Reset body margins and paddings
+    
+    
+
     const content = document.querySelector('#content');
 
 
@@ -18,21 +22,21 @@ const createHomePage = () => {
     header.appendChild(containerHeader);
 
     // Grid container for header, sidebar, main content, and footer
-    const gridContainer = document.createElement('div');
-    gridContainer.classList.add('grid', 'grid-cols-5', 'min-h-screen'); // , 'grid-rows-[auto,1fr,auto]'
-    gridContainer.appendChild(header);
+    const flexContainer = document.createElement('div');
+    flexContainer.classList.add('flex'); // , 'grid-rows-[auto,1fr,auto]'
+    flexContainer.appendChild(header);
 
     // Sidebar 
 
-    const sidebar = document.createElement('aside');
-    sidebar.classList.add('bg-green-500', 'text-white', 'p-4', 'w-48', 'col-span-1');
+    const sidebar = document.createElement('div');
+    sidebar.classList.add('bg-green-500', 'text-white', 'p-10', 'w-48', 'left-0', 'top-0', 'h-screen');
     const containerSidebar = document.createElement('div');
     containerSidebar.classList.add('container-sidebar');
 
   // Add event listener for the "Add new board" button 
 
   const newBoardBtn = document.createElement('button');
-  newBoardBtn.classList.add('bg-white', 'text-green-500', 'p-2', 'mb-4');
+  newBoardBtn.classList.add('bg-white', 'text-green-500', 'p-2'); // , 'mb-4' 
   newBoardBtn.textContent = '+  Add new board'
   containerSidebar.appendChild(newBoardBtn);
 
@@ -52,7 +56,7 @@ const createHomePage = () => {
 
     // Display boards
     const boardContainer = document.createElement('div');
-    boardContainer.classList.add('grid', 'col-span-4', 'p-4', 'board-container', 'bg-red-200');
+    boardContainer.classList.add('flex-1', 'p-4', 'board-container', 'bg-red-200');
 
     
 
@@ -95,7 +99,7 @@ const createHomePage = () => {
             const cards = currentBoard.getCards();
             cards.forEach((card) => {
                 const cardBtn = document.createElement('button');
-                cardBtn.classList.add('bg-blue-700', 'text-white', 'p-2', 'mb-2', 'w-full');
+                cardBtn.classList.add('bg-blue-700', 'text-white', 'p-2',  'w-full'); //'mb-2',
                 cardBtn.textContent = card.name;
                 // Add event listener to display tasks for the selected card
                 cardBtn.addEventListener('click', () => {
@@ -134,14 +138,14 @@ const createHomePage = () => {
     
     // Append elements to content
     content.appendChild(header);
-    content.appendChild(gridContainer);
+    content.appendChild(flexContainer);
     content.appendChild(footer);
     
    // gridContainer.appendChild(sidebar);
    
     
-    gridContainer.appendChild(sidebar);
-    gridContainer.appendChild(boardContainer);
+    flexContainer.appendChild(sidebar);
+    flexContainer.appendChild(boardContainer);
   //  gridContainer.appendChild(footer);
 
     // Append flex container to content
