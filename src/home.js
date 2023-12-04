@@ -83,8 +83,7 @@ const createHomePage = () => {
 
 // Function to update the UI to display tabs in the sidebar
 const updateTabsUI = () => {
-    // Clear existing content in the sidebar
-    containerSidebar.innerHTML = '';
+    
 
     // Display existing tabs
     const tabs = extraBoards.getTabs();
@@ -104,6 +103,7 @@ const updateTabsUI = () => {
       boardManager.setCurrentBoard(tab.board);
       // Update UI to display cards and tasks for the selected board
       updateBoardUI();
+      updateTabsUI();
     });
 
     return tabBtn;
