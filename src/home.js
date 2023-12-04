@@ -72,10 +72,24 @@ const createHomePage = () => {
             boardManager.setCurrentBoard(board);
             // Update UI to display cards and tasks for the selected board
             updateBoardUI();
+            updateSidebarUI();
         });
 
         return boardBtn;
     };
+
+    // Function to update the UI to display boards in the sidebar
+    const updateSidebarUI = () => {
+    // Clear existing content in the sidebar
+    containerSidebar.innerHTML = '';
+
+    // Display existing boards
+    const boards = boardManager.getBoards();
+    boards.forEach((board) => {
+        const boardBtn = createBoardButton(board);
+        containerSidebar.appendChild(boardBtn);
+    });
+};
 
     //  Function to update the UI to display cards for the selected board
 
