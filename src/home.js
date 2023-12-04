@@ -1,6 +1,10 @@
 //home.js
 
 import boardManager from "./boardManager.js";
+import extraBoardsModule from "./extraBoards.js";
+
+const extraBoards = extraBoardsModule(); // Initialize extraBoards module
+
 
 const createHomePage = () => {
     // Reset body margins and paddings
@@ -47,6 +51,7 @@ const createHomePage = () => {
           const newBoard = boardManager.createBoard(boardName);
           // Update UI to display the new board
           updateBoardUI();
+          updateTabsUI();
           console.log(`New board created: ${newBoard.name}`);
      
       }
@@ -60,8 +65,6 @@ const createHomePage = () => {
 
     
 
-    
-
     // function to create a button for each board 
     const createBoardButton = (board) => {
         const boardBtn = document.createElement('button');
@@ -72,24 +75,39 @@ const createHomePage = () => {
             boardManager.setCurrentBoard(board);
             // Update UI to display cards and tasks for the selected board
             updateBoardUI();
-            updateSidebarUI();
+        
         });
 
         return boardBtn;
     };
 
-    // Function to update the UI to display boards in the sidebar
-    const updateSidebarUI = () => {
+// Function to update the UI to display tabs in the sidebar
+const updateTabsUI = () => {
     // Clear existing content in the sidebar
     containerSidebar.innerHTML = '';
 
-    // Display existing boards
-    const boards = boardManager.getBoards();
-    boards.forEach((board) => {
-        const boardBtn = createBoardButton(board);
-        containerSidebar.appendChild(boardBtn);
+    // Display existing tabs
+    const tabs = extraBoards.getTabs();
+    tabs.forEach((tab) => {
+      const tabBtn = createTabButton(tab);
+      containerSidebar.appendChild(tabBtn);
     });
-};
+  };
+
+  // Function to create a button for each tab
+  const createTabButton = (tab) => {
+    const tabBtn = document.createElement('button');
+    tabBtn.textContent = tab.board.name;
+
+    // Add event listener to set the current board when clicked
+    tabBtn.addEventListener('click', () => {
+      boardManager.setCurrentBoard(tab.board);
+      // Update UI to display cards and tasks for the selected board
+      updateBoardUI();
+    });
+
+    return tabBtn;
+  };
 
     //  Function to update the UI to display cards for the selected board
 
