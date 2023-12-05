@@ -1,9 +1,9 @@
 //home.js
 
 import boardManager from "./boardManager.js";
-import extraBoardsModule from "./extraBoards.js";
+import getExtraBoardsInstance from "./extraBoards.js";
 
-const extraBoards = extraBoardsModule(); // Initialize extraBoards module
+const extraBoards = getExtraBoardsInstance(); // Initialize extraBoards module
 
 
 const createHomePage = () => {
@@ -49,9 +49,11 @@ const createHomePage = () => {
       if (boardName) {
           
           const newBoard = boardManager.createBoard(boardName);
-          // Update UI to display the new board
-          updateBoardUI();
-          updateTabsUI();
+          // Update extraBoards to add a new tab
+             extraBoards.addTab(newBoard);
+         // Update UI to display the new board and tabs
+            updateBoardUI();
+            updateTabsUI();
           console.log(`New board created: ${newBoard.name}`);
      
       }
