@@ -1,26 +1,32 @@
 // extraBoards.js
 
-const extraBoards = () => {
-    let tabs = [];
-  
-    const createTab = (board) => {
-      const tab = {
-        id: Date.now(), // Use a unique identifier for each tab
-        board,
-      };
-      tabs.push(tab);
-      return tab;
-    };
-  
-    const getTabs = () => {
-      return tabs;
-    };
-  
-    return {
-      createTab,
-      getTabs,
-    };
+let extraBoardsInstance = null;
+
+const extraBoardsModule = () => {
+  let tabs = [];
+
+  const addTab = (board) => {
+    const newTab = { board };
+    tabs.push(newTab);
   };
-  
-  export default extraBoards;
+
+  const getTabs = () => {
+    return tabs;
+  };
+
+  return {
+    addTab,
+    getTabs,
+  };
+};
+
+export const getExtraBoardsInstance = () => {
+  if (!extraBoardsInstance) {
+    extraBoardsInstance = extraBoardsModule();
+  }
+  return extraBoardsInstance;
+};
+
+export default getExtraBoardsInstance;
+
   
