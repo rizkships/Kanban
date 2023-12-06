@@ -9,9 +9,14 @@ const boardManager = () => {
     let currentBoard = null;
 
     const createBoard = (boardName) => {
+        // DEBUG
+        console.log(`Creating a new board with name: ${boardName}`);
         const newBoard = Board(boardName);
         boards.push(newBoard);
         setCurrentBoard(newBoard);
+        // DEBUG 
+        console.log(`Current boards after creating: ${boards.map(board => board.name)}`);
+
         return newBoard;
     };
 

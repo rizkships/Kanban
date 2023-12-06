@@ -6,7 +6,7 @@ const extraBoardsModule = () => {
   let tabs = [];
 
   const addTab = (board) => {
-    const newTab = { board };
+    const newTab = { name: board.name }; // Store only the name property
     tabs.push(newTab);
   };
 

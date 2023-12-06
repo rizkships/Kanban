@@ -50,7 +50,10 @@ const createHomePage = () => {
           
           const newBoard = boardManager.createBoard(boardName);
           // Update extraBoards to add a new tab
-             extraBoards.addTab(newBoard);
+           extraBoards.addTab(newBoard);
+           //DEBUG
+           console.log(`New board created: ${newBoard.name}`);
+           console.log(`Current boards in boardManager: ${boardManager.getBoards().map(board => board.name)}`);
          // Update UI to display the new board and tabs
             updateBoardUI();
             updateTabsUI();
@@ -83,9 +86,12 @@ const createHomePage = () => {
         return boardBtn;
     };
 
-// Function to update the UI to display tabs in the sidebar
-const updateTabsUI = () => {
+
+    // Function to update the UI to display tabs in the sidebar
+   const updateTabsUI = () => {
     
+   // Log the tabs array for debugging
+   console.log('Tabs array:', extraBoards.getTabs());
 
     // Display existing tabs
     const tabs = extraBoards.getTabs();
@@ -98,12 +104,18 @@ const updateTabsUI = () => {
   // Function to create a button for each tab
   const createTabButton = (tab) => {
     const tabBtn = document.createElement('button');
-    tabBtn.textContent = tab.board.name;
+    // Check if tab.name is defined before accessing it
+  tabBtn.textContent = tab.name || '';
+
+   // Log the tab object for debugging
+   console.log('Tab:', tab);
+
 
     // Add event listener to set the current board when clicked
     tabBtn.addEventListener('click', () => {
-      boardManager.setCurrentBoard(tab.board);
-      // Update UI to display cards and tasks for the selected board
+        const selectedBoard = boardManager.getBoards().find(board => board.name === tab.name);
+        boardManager.setCurrentBoard(selectedBoard);
+        // Update UI to display cards and tasks for the selected board
       updateBoardUI();
       updateTabsUI();
     });
