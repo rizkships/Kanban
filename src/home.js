@@ -39,30 +39,43 @@ const createHomePage = () => {
 
   // Add event listener for the "Add new board" button 
 
-  const newBoardBtn = document.createElement('button');
-  newBoardBtn.classList.add('bg-white', 'text-green-500', 'p-2'); // , 'mb-4' 
-  newBoardBtn.textContent = '+  Add new board'
-  containerSidebar.appendChild(newBoardBtn);
+ 
+// Add event listener for the "Add new board" button 
+const newBoardForm = document.createElement('form');
+newBoardForm.setAttribute('action', '');
 
-  newBoardBtn.addEventListener('click', () => {
-      const boardName = prompt('Enter the name for the new board:');
-      if (boardName) {
-          
-          const newBoard = boardManager.createBoard(boardName);
-          // Update extraBoards to add a new tab
-           extraBoards.addTab(newBoard);
-           //DEBUG
-           console.log(`New board created: ${newBoard.name}`);
-           console.log(`Current boards in boardManager: ${boardManager.getBoards().map(board => board.name)}`);
-         // Update UI to display the new board and tabs
-            updateBoardUI();
-            updateTabsUI();
-          console.log(`New board created: ${newBoard.name}`);
-     
-      }
-  });
-    
-  sidebar.appendChild(containerSidebar);
+const newBoardInput = document.createElement('input');
+newBoardInput.setAttribute('type', 'text');
+newBoardInput.setAttribute('class', 'new-board');
+newBoardInput.setAttribute('placeholder', 'New board name');
+newBoardInput.setAttribute('aria-label', 'New board name');
+
+const newBoardBtn = document.createElement('button');
+newBoardBtn.setAttribute('class', 'btn-board');
+newBoardBtn.setAttribute('aria-label', 'Create new board');
+newBoardBtn.textContent = '+';
+
+newBoardForm.appendChild(newBoardInput);
+newBoardForm.appendChild(newBoardBtn);
+
+containerSidebar.appendChild(newBoardForm);
+
+newBoardForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const boardName = newBoardInput.value.trim();
+    if (boardName) {
+        const newBoard = boardManager.createBoard(boardName);
+        // Update extraBoards to add a new tab
+        extraBoards.addTab(newBoard);
+        //DEBUG
+        console.log(`New board created: ${newBoard.name}`);
+        console.log(`Current boards in boardManager: ${boardManager.getBoards().map(board => board.name)}`);
+        // Update UI to display the new board and tabs
+        updateBoardUI();
+        updateTabsUI();
+        console.log(`New board created: ${newBoard.name}`);
+    }
+})
 
     // Display boards
     const boardContainer = document.createElement('div');
